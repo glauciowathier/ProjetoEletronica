@@ -1,0 +1,307 @@
+/////////////////////////////////////////////////////////////////////////
+////                            PicUSB.c                             ////
+////                                                                 ////
+//// Este ejemplo muestra como desarrollar un sencillo dispositivo   ////
+//// USB con el PIC18F2550, aunque puede ser facilmente adaptado     ////
+//// para la serie 18Fxx5x. Se suministra el PicUSB.exe, así como    ////
+//// su código fuente para Visual C# 2005, podréis encontrar tb      ////
+//// los drivers para el dispositivo. No se suministra esquema de    ////
+//// conexión puesto que está pensado para ser usado en el GTP USB,  ////
+//// cualquiera de las tres versiones disponibles, si aun no teneis  ////
+//// el programador, podeis utilizar el esquema de ese proyecto.     ////
+////                                                                 ////
+//// Cuando el dispositivo sea conectado al PC, saldrá el asistente  ////
+//// para la instalación del driver. Instala el suministrado junto   ////
+//// a este ejemplo, lo encontrareis dentro de la carpeta Driver.    ////
+//// Una vez instalado podreis usar el PicUSB.exe para encender o    ////
+//// apagar el led bicolor del GTP USB, y para realizar la suma de   ////
+//// dos números introducidos.                                       ////
+////                                                                 ////
+//// Realizado con el compilador CCS PCWH 3.227                      ////
+////                                                                 ////
+//// Por: Jaime Fernández-Caro Belmonte        hobbypic@hotmail.com  ////
+////                                                                 ////
+//// http://www.hobbypic.com                                         ////
+/////////////////////////////////////////////////////////////////////////
+#include <18F4550.h>
+#device adc=10
+#define WireTX PIN_C6 // <--------- C 6
+#define WireRX PIN_C7
+#fuses HSPLL,NOWDT,NOPROTECT,NOLVP,NODEBUG,USBDIV,PLL3,CPUDIV1,VREGEN
+#use delay(clock=48000000)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// CCS Library dynamic defines.  For dynamic configuration of the CCS Library
+// for your application several defines need to be made.  See the comments
+// at usb.h for more information
+//
+/////////////////////////////////////////////////////////////////////////////
+#define USB_HID_DEVICE     FALSE             //deshabilitamos el uso de las directivas HID
+#define USB_EP1_TX_ENABLE  USB_ENABLE_BULK   //turn on EP1(EndPoint1) for IN bulk/interrupt transfers
+#define USB_EP1_RX_ENABLE  USB_ENABLE_BULK   //turn on EP1(EndPoint1) for OUT bulk/interrupt transfers
+#define USB_EP1_TX_SIZE    4                 //size to allocate for the tx endpoint 1 buffer
+#define USB_EP1_RX_SIZE    8                 //size to allocate for the rx endpoint 1 buffer
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// If you are using a USB connection sense pin, define it here.  If you are
+// not using connection sense, comment out this line.  Without connection
+// sense you will not know if the device gets disconnected.
+//       (connection sense should look like this:
+//                             100k
+//            VBUS-----+----/\/\/\/\/\----- (I/O PIN ON PIC)
+//                     |
+//                     +----/\/\/\/\/\-----GND
+//                             100k
+//        (where VBUS is pin1 of the USB connector)
+//
+/////////////////////////////////////////////////////////////////////////////
+//#define USB_CON_SENSE_PIN PIN_B2  //CCS 18F4550 development kit has optional conection sense pin
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Include the CCS USB Libraries.  See the comments at the top of these
+// files for more information
+//
+/////////////////////////////////////////////////////////////////////////////
+#include <pic18_usb.h>     //Microchip PIC18Fxx5x Hardware layer for CCS's PIC USB driver
+#include <PicUSB.h>         //Configuración del USB y los descriptores para este dispositivo
+#include <usb.c>           //handles usb setup tokens and get descriptor reports
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Al conectar el PicUSB al PC encendemos el Led Rojo hasta que el dispositivo
+// halla sido configurado por el PC, en ese momento encederemos el Led Verde.
+// Esperaremos hasta que se reciba un paquete proveniente del PC. Comprobaremos
+// el primer byte del paquete recibido para comprobar si queremos entrar en el
+// modo Suma, donde se realizará una suma de dos operandos, que corresponderan
+// con los dos bytes restantes del paquete recibido; una vez realizada la suma
+// enviaremos el paquete con el resultado de vuelta al PC. Si entramos en el
+// modo Led comprobaremos el segundo byte del paquete recibido para comprobar
+// si deberemos apagar los leds, encender el verder o el rojo.
+//
+/////////////////////////////////////////////////////////////////////////////
+
+#define LED_OK           PIN_D0
+#define LED_FAIL         PIN_D1
+#define LED_DATA         PIN_D2
+#define LED_ON           output_high
+#define LED_OFF          output_low
+
+int doze[4] = {1,1,0,0};
+int seis[4] = {0,1,1,0};
+int tres[4] = {0,0,1,1};
+int nove[4] = {1,0,0,1};
+
+int32 PINS_X[] = { PIN_D4, PIN_D5, PIN_D6, PIN_D7 };
+int8 atual_x = 9;
+
+int32 PINS_Y[] = { PIN_B0, PIN_B1, PIN_B2, PIN_B3 };
+int8 atual_y = 9;
+
+int32 PINS_Z[] = { PIN_B4, PIN_B5, PIN_B6, PIN_B7 };
+int8 atual_z = 9;
+
+#define modo      recibe[0]
+#define dir_x   recibe[1]
+#define value_x   recibe[2]
+#define dir_y   recibe[3]
+#define value_y   recibe[4]        
+#define value_z   recibe[5]
+#define status    send2[0]
+
+void move(int steps[4], int32 pins[])
+{
+   int i;
+   for(i = 0; i < 4; i++)
+   {
+      if(steps[i] == 0){
+         output_high(pins[i]);
+      }
+      else{
+         output_low(pins[i]);
+      }
+   }
+}
+
+void move_x(char dir)
+{
+     int8 move_to[];
+     switch(dir)
+     {
+         case 'R':
+         {
+            if(atual_x == 12)
+            {
+               move_to = nove;
+               atual_x = 9;
+            }
+            else if(atual_x == 6)
+            {
+               move_to = doze;
+               atual_x = 12;
+            }
+            else if(atual_x == 3)
+            {
+               move_to = seis;
+               atual_x = 6;
+            }
+            else if(atual_x == 9)
+            {  
+               move_to = tres;
+               atual_x = 3;
+            }
+            break;
+         }
+         
+         case 'L':
+         {
+            if(atual_x == 12)
+            {
+               move_to = seis;
+               atual_x = 6;
+            }
+            else if(atual_x == 6)
+            {
+               move_to = tres;
+               atual_x = 3;
+            }
+            else if(atual_x == 3)
+            {
+               move_to = nove;
+               atual_x = 9;
+            }
+            else if(atual_x == 9)
+            {  
+               move_to = doze;
+               atual_x = 12;
+            }
+            break;
+         }
+         case 'S':
+         {
+            move_to = nove;
+            atual_x = 9;
+         }
+     }                
+     move(move_to, PINS_X);
+}
+
+void move_y(char dir)
+{  
+     int8 move_to[];
+     switch(dir)
+     {
+         case 'F':
+         {
+            if(atual_y == 0 || atual_y == 9){
+               move_to = tres;
+               atual_y = 3;
+            }else if(atual_y == 3){
+               move_to = seis;
+               atual_y = 6;
+            }else if(atual_y == 6){
+               move_to = doze;
+               atual_y = 12;
+            }else if(atual_y == 12){
+               move_to = nove;
+               atual_y = 9;
+            }
+            break;
+         }
+         
+         case 'B':
+         {
+            if(atual_y == 0 || atual_y == 9){
+               move_to = doze;
+               atual_y = 12;
+            }else if(atual_y == 3){
+               move_to = nove;
+               atual_y = 9;
+            }else if(atual_y == 6){
+               move_to = tres;
+               atual_y = 3;
+            }else if(atual_y == 12){
+               move_to = seis;
+               atual_y = 6;
+            }
+            break;
+         }
+         case 'S':
+         {
+            move_to = nove;
+            atual_x = 9;
+         }
+     }                
+     move(move_to, PINS_Y);
+}
+
+void main(void) {
+     
+   int8 recibe[5];                  //declaramos variables
+   int8 send2[1];
+
+   LED_OFF(LED_OK);                   //encendemos led rojo
+   LED_ON(LED_FAIL);
+         
+   usb_init();                      //inicializamos el USB  
+   
+   setup_adc_ports(AN0);         //Configura canais analógico
+   setup_adc(ADC_CLOCK_INTERNAL);    //De acordo com relógio interno.
+   
+   /*SETUP_TIMER_1 (T1_INTERNAL|T1_DIV_BY_2);       //Configurar timer1 para clock iterno/8
+   enable_interrupts (INT_TIMER1);                //Habilitar Interrupções
+   enable_interrupts (global);*/
+
+   usb_task();                      //habilita periferico usb e interrupciones
+   usb_wait_for_enumeration();      //esperamos hasta que el PicUSB sea configurado por el host
+   
+   enable_interrupts (global);*/
+
+   LED_OFF(LED_FAIL);                 //desligo o LED vermelho
+   LED_ON(LED_OK);                    //acendo o LED verde
+   
+   move_x('S');
+   move_y('S');
+         
+   while (true)
+   {
+      if(usb_enumerated())          //si el PicUSB está configurado
+      {         
+         output_high(PIN_E0);
+         if (usb_kbhit(1))          //si el endpoint de salida contiene datos del host
+         {            
+            LED_ON(LED_DATA);
+            usb_get_packet(1, recibe, 5); //cojemos el paquete de tamaño 3bytes del EP1 y almacenamos en recibe            
+            
+            if(modo == 1)
+            {               
+                  if(dir_x == 1 && value_x == 1){
+                     move_x('R');
+                  }
+                  if(dir_x == 2 && value_x == 1){
+                     move_x('L');
+                  }                  
+                  if(dir_y == 1 && value_y == 1){
+                     move_y('F');
+                  }
+                  if(dir_y == 2 && value_y == 1){
+                     move_y('B');
+                  }
+                  
+                  delay_ms(20);               
+            }
+            
+            if (modo == 4)
+            {
+               status=1;
+               usb_put_packet(1, send2, 1, USB_DTS_TOGGLE); //enviada a informação para o PC com o status
+            }    
+            LED_OFF(LED_DATA);
+         }
+      }
+   }
+}
