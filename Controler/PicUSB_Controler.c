@@ -183,8 +183,8 @@ void move_x(char dir)
          }
          case 'S':
          {
-            move_to = nove;
-            atual_x = 9;
+            move_to = seis;
+            atual_x = 6;
          }
      }                
      move(move_to, PINS_X);
@@ -232,8 +232,8 @@ void move_y(char dir)
          }
          case 'S':
          {
-            move_to = nove;
-            atual_x = 9;
+            move_to = seis;
+            atual_x = 6;
          }
      }                
      move(move_to, PINS_Y);
@@ -297,7 +297,7 @@ void main(void) {
             
             if (modo == 4)
             {
-               status=1;
+               status = 1;
                usb_put_packet(1, send2, 1, USB_DTS_TOGGLE); //enviada a informação para o PC com o status
             }    
             LED_OFF(LED_DATA);

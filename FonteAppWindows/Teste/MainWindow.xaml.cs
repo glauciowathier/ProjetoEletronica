@@ -36,7 +36,7 @@ namespace Teste
             time.Interval = 1000;
 
             time.Elapsed += time_Elapsed;
-            time.Start();
+            //time.Start();
         }
 
         void time_Elapsed(object sender, ElapsedEventArgs e)
