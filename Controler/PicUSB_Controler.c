@@ -118,7 +118,7 @@ void move(int steps[4], int32 pins[])
    int i;
    for(i = 0; i < 4; i++)
    {
-      if(steps[i] == 0){
+      if(steps[i] == 1){
          output_high(pins[i]);
       }
       else{

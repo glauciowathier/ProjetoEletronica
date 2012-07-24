@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -29,7 +30,26 @@ namespace Teste
 
         public MainWindow()
         {
-            InitializeComponent();            
+            InitializeComponent();
+
+            Timer time = new Timer();
+            time.Interval = 1000;
+
+            time.Elapsed += time_Elapsed;
+            time.Start();
+        }
+
+        void time_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            var status = api.Status_PIC();
+
+            MessageBox.Show(status.ToString());
+
+            if (status == 1)
+            {
+                this.txt_status.Text = "Conectado";
+                this.txt_status.Foreground = Brushes.Green;
+            }
         }
 
         private void left_Click_1(object sender, RoutedEventArgs e)
