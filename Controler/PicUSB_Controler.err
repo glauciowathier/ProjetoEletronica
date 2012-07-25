@@ -1,7 +1,7 @@
->>> Warning 203 "C:\ARQUIV~1\PICC\drivers\pic18_usb.h" Line 523(1,1): Condition always TRUE
->>> Warning 216 "PicUSB_Controler.c" Line 311(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_token_reset)
->>> Warning 216 "PicUSB_Controler.c" Line 311(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_flush_out)
->>> Warning 216 "PicUSB_Controler.c" Line 311(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_flush_in)
+>>> Warning 203 "C:\PROGRA~1\PICC\drivers\pic18_usb.h" Line 523(1,1): Condition always TRUE
+>>> Warning 216 "PicUSB_Controler.c" Line 308(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_token_reset)
+>>> Warning 216 "PicUSB_Controler.c" Line 308(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_flush_out)
+>>> Warning 216 "PicUSB_Controler.c" Line 308(0,1): Interrupts disabled during call to prevent re-entrancy:  (usb_flush_in)
 >>> Warning 202 "PicUSB_Controler.c" Line 105(7,13): Variable never used:   PINS_Z
 >>> Warning 202 "PicUSB_Controler.c" Line 106(14,21): Variable never used:   atual_z
       Memory usage:   ROM=14%      RAM=55% - 57%

@@ -134,57 +134,57 @@ void move_x(char dir)
      {
          case 'R':
          {
-            if(atual_x == 12)
+            if(atual_x == 3)
             {
                move_to = nove;
                atual_x = 9;
             }
             else if(atual_x == 6)
             {
+               move_to = tres;
+               atual_x = 3;
+            }
+            else if(atual_x == 9)
+            {
                move_to = doze;
                atual_x = 12;
             }
-            else if(atual_x == 3)
-            {
+            else if(atual_x == 12)
+            {  
                move_to = seis;
                atual_x = 6;
-            }
-            else if(atual_x == 9)
-            {  
-               move_to = tres;
-               atual_x = 3;
             }
             break;
          }
          
          case 'L':
          {
-            if(atual_x == 12)
+            if(atual_x == 3)
             {
                move_to = seis;
                atual_x = 6;
             }
             else if(atual_x == 6)
             {
+               move_to = doze;
+               atual_x = 12;
+            }
+            else if(atual_x == 9)
+            {
                move_to = tres;
                atual_x = 3;
             }
-            else if(atual_x == 3)
-            {
+            else if(atual_x == 12)
+            {  
                move_to = nove;
                atual_x = 9;
-            }
-            else if(atual_x == 9)
-            {  
-               move_to = doze;
-               atual_x = 12;
             }
             break;
          }
          case 'S':
          {
-            move_to = seis;
-            atual_x = 6;
+            move_to = nove;
+            atual_y = 9;
          }
      }                
      move(move_to, PINS_X);
@@ -197,43 +197,43 @@ void move_y(char dir)
      {
          case 'F':
          {
-            if(atual_y == 0 || atual_y == 9){
+            if(atual_y == 3){
+               move_to = nove;
+               atual_y = 9;
+            }else if(atual_y == 6){
                move_to = tres;
                atual_y = 3;
-            }else if(atual_y == 3){
-               move_to = seis;
-               atual_y = 6;
-            }else if(atual_y == 6){
+            }else if(atual_y == 9){
                move_to = doze;
                atual_y = 12;
             }else if(atual_y == 12){
-               move_to = nove;
-               atual_y = 9;
+               move_to = seis;
+               atual_y = 6;
             }
             break;
          }
          
          case 'B':
          {
-            if(atual_y == 0 || atual_y == 9){
+            if(atual_y == 3){
+               move_to = seis;
+               atual_y = 6;
+            }else if(atual_y == 6){
                move_to = doze;
                atual_y = 12;
-            }else if(atual_y == 3){
-               move_to = nove;
-               atual_y = 9;
-            }else if(atual_y == 6){
+            }else if(atual_y == 9){
                move_to = tres;
                atual_y = 3;
             }else if(atual_y == 12){
-               move_to = seis;
-               atual_y = 6;
+               move_to = nove;
+               atual_y = 9;
             }
             break;
          }
          case 'S':
          {
-            move_to = seis;
-            atual_x = 6;
+            move_to = nove;
+            atual_y = 9;
          }
      }                
      move(move_to, PINS_Y);
@@ -246,7 +246,7 @@ void main(void) {
 
    LED_OFF(LED_OK);                   //encendemos led rojo
    LED_ON(LED_FAIL);
-         
+            
    usb_init();                      //inicializamos el USB  
    
    setup_adc_ports(AN0);         //Configura canais analógico
@@ -259,7 +259,7 @@ void main(void) {
    usb_task();                      //habilita periferico usb e interrupciones
    usb_wait_for_enumeration();      //esperamos hasta que el PicUSB sea configurado por el host
    
-   enable_interrupts (global);*/
+   enable_interrupts (global);
 
    LED_OFF(LED_FAIL);                 //desligo o LED vermelho
    LED_ON(LED_OK);                    //acendo o LED verde
@@ -270,8 +270,7 @@ void main(void) {
    while (true)
    {
       if(usb_enumerated())          //si el PicUSB está configurado
-      {         
-         output_high(PIN_E0);
+      {  
          if (usb_kbhit(1))          //si el endpoint de salida contiene datos del host
          {            
             LED_ON(LED_DATA);

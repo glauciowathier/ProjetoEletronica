@@ -192,7 +192,7 @@ FF6-FF8 @READ_PROGRAM_MEMORY.P1
 FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
 
 ROM Allocation:
-0F62  @delay_ms1
+0F5A  @delay_ms1
 009E  usb_ep_tx_type
 00BE  usb_ep_tx_size
 00EE  usb_ep_rx_size
@@ -201,10 +201,10 @@ ROM Allocation:
 0BC0  usb_task
 0BE2  usb_init
 0902  usb_flush_in
-0F8C  usb_put_packet
+0F84  usb_put_packet
 081E  usb_flush_out
-0E5A  usb_get_packet_buffer
-0F22  usb_get_packet
+0E52  usb_get_packet_buffer
+0F1A  usb_get_packet
 0702  usb_stall_ep
 06C0  usb_unstall_ep
 0746  usb_endpoint_stalled
@@ -243,22 +243,22 @@ ROM Allocation:
 0BFC  @WRITEBITA
 0CE2  move_x
 0D9A  move_y
-1040  MAIN
-1040  @cinit
+1038  MAIN
+1038  @cinit
 
 Project Directory:
-    C:\Documents and Settings\glaucio\Desktop\ProjetoEletronica\ProjetoEletronica\Controler\
+    E:\Controler\
 
 Project Files:
     PicUSB_Controler.c
-    ..\..\..\..\..\..\ARQUIV~1\PICC\devices\18F4550.h
-    ..\..\..\..\..\..\ARQUIV~1\PICC\drivers\pic18_usb.h
-    ..\..\..\..\..\..\ARQUIV~1\PICC\drivers\usb.h
+    C:\PROGRA~1\PICC\devices\18F4550.h
+    C:\PROGRA~1\PICC\drivers\pic18_usb.h
+    C:\PROGRA~1\PICC\drivers\usb.h
     PicUSB.h
-    ..\..\..\..\..\..\ARQUIV~1\PICC\drivers\usb.c
+    C:\PROGRA~1\PICC\drivers\usb.c
 
 Units:
-    C:\Documents and Settings\glaucio\Desktop\ProjetoEletronica\ProjetoEletronica\Controler\PicUSB_Controler.c (main)
+    E:\Controler\PicUSB_Controler.c (main)
 
 Compiler Settings:
     Processor:      PIC18F4550

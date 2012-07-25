@@ -1,15 +1,15 @@
-CCS PCH C Compiler, Version 4.065, 11862               22-jul-12 22:25
+CCS PCH C Compiler, Version 4.065, 17444               25-jul-12 13:36
 
-               Filename: C:\Documents and Settings\glaucio\Desktop\ProjetoEletronica\ProjetoEletronica\Controler\PicUSB_Controler.lst
+               Filename: E:\Controler\PicUSB_Controler.lst
 
-               ROM used: 4566 bytes (14%)
-                         Largest free fragment is 28198
+               ROM used: 4558 bytes (14%)
+                         Largest free fragment is 28206
                RAM used: 1134 (55%) at main() level
                          1166 (57%) worst case
                Stack:    11 worst case (4 in main + 7 for interrupts)
 
 *
-0000:  GOTO   1040
+0000:  GOTO   1038
 *
 0008:  MOVWF  05
 000A:  MOVFF  FD8,06
@@ -88,26 +88,26 @@ CCS PCH C Compiler, Version 4.065, 11862               22-jul-12 22:25
 .................... #fuses HSPLL,NOWDT,NOPROTECT,NOLVP,NODEBUG,USBDIV,PLL3,CPUDIV1,VREGEN 
 .................... #use delay(clock=48000000) 
 *
-0F62:  CLRF   FEA
-0F64:  MOVLW  6E
-0F66:  MOVWF  FE9
-0F68:  MOVF   FEF,W
-0F6A:  BZ    0F88
-0F6C:  MOVLW  0F
-0F6E:  MOVWF  01
-0F70:  CLRF   00
-0F72:  DECFSZ 00,F
-0F74:  BRA    0F72
-0F76:  DECFSZ 01,F
-0F78:  BRA    0F70
-0F7A:  MOVLW  8F
-0F7C:  MOVWF  00
-0F7E:  DECFSZ 00,F
-0F80:  BRA    0F7E
-0F82:  NOP   
-0F84:  DECFSZ FEF,F
-0F86:  BRA    0F6C
-0F88:  GOTO   11B4 (RETURN)
+0F5A:  CLRF   FEA
+0F5C:  MOVLW  6E
+0F5E:  MOVWF  FE9
+0F60:  MOVF   FEF,W
+0F62:  BZ    0F80
+0F64:  MOVLW  0F
+0F66:  MOVWF  01
+0F68:  CLRF   00
+0F6A:  DECFSZ 00,F
+0F6C:  BRA    0F6A
+0F6E:  DECFSZ 01,F
+0F70:  BRA    0F68
+0F72:  MOVLW  8F
+0F74:  MOVWF  00
+0F76:  DECFSZ 00,F
+0F78:  BRA    0F76
+0F7A:  NOP   
+0F7C:  DECFSZ FEF,F
+0F7E:  BRA    0F64
+0F80:  GOTO   11AC (RETURN)
 ....................  
 .................... ///////////////////////////////////////////////////////////////////////////// 
 .................... // 
@@ -1599,7 +1599,7 @@ CCS PCH C Compiler, Version 4.065, 11862               22-jul-12 22:25
 0BE8:  SUBLW  02
 0BEA:  BNZ   0BE4
 .................... } 
-0BEC:  GOTO   1122 (RETURN)
+0BEC:  GOTO   111A (RETURN)
 ....................  
 ....................  
 .................... /************************************************************** 
@@ -1794,94 +1794,94 @@ CCS PCH C Compiler, Version 4.065, 11862               22-jul-12 22:25
 ....................  
 ....................    i=EP_BDxST_I(endpoint); 
 *
-0F8C:  MOVF   x6E,W
-0F8E:  MULLW  08
-0F90:  MOVF   FF3,W
-0F92:  ADDLW  04
-0F94:  MOVWF  01
-0F96:  MOVLW  04
-0F98:  MOVWF  03
-0F9A:  BTFSC  FD8.0
-0F9C:  INCF   03,F
-0F9E:  MOVFF  01,FE9
-0FA2:  MOVFF  03,FEA
-0FA6:  MOVFF  FEF,76
+0F84:  MOVF   x6E,W
+0F86:  MULLW  08
+0F88:  MOVF   FF3,W
+0F8A:  ADDLW  04
+0F8C:  MOVWF  01
+0F8E:  MOVLW  04
+0F90:  MOVWF  03
+0F92:  BTFSC  FD8.0
+0F94:  INCF   03,F
+0F96:  MOVFF  01,FE9
+0F9A:  MOVFF  03,FEA
+0F9E:  MOVFF  FEF,76
 ....................    if (!bit_test(i,7)) { 
-0FAA:  BTFSC  x76.7
-0FAC:  BRA    1038
+0FA2:  BTFSC  x76.7
+0FA4:  BRA    1030
 ....................  
 ....................       buff_add=EP_BDxADR_I(endpoint); 
-0FAE:  MOVF   x6E,W
-0FB0:  MULLW  08
-0FB2:  MOVF   FF3,W
-0FB4:  ADDLW  06
-0FB6:  MOVWF  01
-0FB8:  MOVLW  04
-0FBA:  MOVWF  03
-0FBC:  BTFSC  FD8.0
-0FBE:  INCF   03,F
-0FC0:  MOVFF  01,FE9
-0FC4:  MOVFF  03,FEA
-0FC8:  MOVFF  FEC,03
-0FCC:  MOVF   FED,F
-0FCE:  MOVFF  FEF,77
-0FD2:  MOVFF  03,78
+0FA6:  MOVF   x6E,W
+0FA8:  MULLW  08
+0FAA:  MOVF   FF3,W
+0FAC:  ADDLW  06
+0FAE:  MOVWF  01
+0FB0:  MOVLW  04
+0FB2:  MOVWF  03
+0FB4:  BTFSC  FD8.0
+0FB6:  INCF   03,F
+0FB8:  MOVFF  01,FE9
+0FBC:  MOVFF  03,FEA
+0FC0:  MOVFF  FEC,03
+0FC4:  MOVF   FED,F
+0FC6:  MOVFF  FEF,77
+0FCA:  MOVFF  03,78
 ....................  
 ....................       for (j=0;j<len;j++) { 
-0FD6:  CLRF   x75
-0FD8:  CLRF   x74
-0FDA:  MOVF   x75,W
-0FDC:  SUBWF  x72,W
-0FDE:  BNC   1014
-0FE0:  BNZ   0FE8
-0FE2:  MOVF   x71,W
-0FE4:  SUBWF  x74,W
-0FE6:  BC    1014
+0FCE:  CLRF   x75
+0FD0:  CLRF   x74
+0FD2:  MOVF   x75,W
+0FD4:  SUBWF  x72,W
+0FD6:  BNC   100C
+0FD8:  BNZ   0FE0
+0FDA:  MOVF   x71,W
+0FDC:  SUBWF  x74,W
+0FDE:  BC    100C
 ....................          *buff_add=*ptr; 
-0FE8:  MOVFF  6F,FE9
-0FEC:  MOVFF  70,FEA
-0FF0:  MOVFF  FEF,7B
-0FF4:  MOVFF  78,FEA
-0FF8:  MOVFF  77,FE9
-0FFC:  MOVFF  7B,FEF
+0FE0:  MOVFF  6F,FE9
+0FE4:  MOVFF  70,FEA
+0FE8:  MOVFF  FEF,7B
+0FEC:  MOVFF  78,FEA
+0FF0:  MOVFF  77,FE9
+0FF4:  MOVFF  7B,FEF
 ....................          buff_add++; 
-1000:  INCF   x77,F
-1002:  BTFSC  FD8.2
-1004:  INCF   x78,F
+0FF8:  INCF   x77,F
+0FFA:  BTFSC  FD8.2
+0FFC:  INCF   x78,F
 ....................          ptr++; 
-1006:  INCF   x6F,F
-1008:  BTFSC  FD8.2
-100A:  INCF   x70,F
+0FFE:  INCF   x6F,F
+1000:  BTFSC  FD8.2
+1002:  INCF   x70,F
 ....................       } 
-100C:  INCF   x74,F
-100E:  BTFSC  FD8.2
-1010:  INCF   x75,F
-1012:  BRA    0FDA
-1014:  CLRF   18
-1016:  BTFSC  FF2.7
-1018:  BSF    18.7
-101A:  BCF    FF2.7
+1004:  INCF   x74,F
+1006:  BTFSC  FD8.2
+1008:  INCF   x75,F
+100A:  BRA    0FD2
+100C:  CLRF   18
+100E:  BTFSC  FF2.7
+1010:  BSF    18.7
+1012:  BCF    FF2.7
 ....................  
 ....................       return(usb_flush_in(endpoint, len, tgl)); 
-101C:  MOVFF  6E,83
-1020:  MOVFF  72,85
-1024:  MOVFF  71,84
-1028:  MOVFF  73,86
-102C:  RCALL  0902
-102E:  BTFSC  18.7
-1030:  BSF    FF2.7
-1032:  MOVF   01,W
-1034:  BRA    103C
+1014:  MOVFF  6E,83
+1018:  MOVFF  72,85
+101C:  MOVFF  71,84
+1020:  MOVFF  73,86
+1024:  RCALL  0902
+1026:  BTFSC  18.7
+1028:  BSF    FF2.7
+102A:  MOVF   01,W
+102C:  BRA    1034
 ....................     } 
 ....................     else { 
-1036:  BRA    1038
+102E:  BRA    1030
 ....................         debug_usb(debug_putc,"\r\nPUT ERR"); 
 ....................     } 
 ....................     return(0); 
-1038:  MOVLW  00
-103A:  MOVWF  01
+1030:  MOVLW  00
+1032:  MOVWF  01
 .................... } 
-103C:  GOTO   11D2 (RETURN)
+1034:  GOTO   11CA (RETURN)
 ....................  
 .................... /// END User Functions 
 ....................  
@@ -2071,104 +2071,104 @@ CCS PCH C Compiler, Version 4.065, 11862               22-jul-12 22:25
 ....................  
 ....................    al=EP_BDxADR_O(endpoint); 
 *
-0E5A:  MOVF   x73,W
-0E5C:  MULLW  08
-0E5E:  MOVF   FF3,W
-0E60:  ADDLW  02
-0E62:  MOVWF  01
-0E64:  MOVLW  04
-0E66:  MOVWF  03
-0E68:  BTFSC  FD8.0
-0E6A:  INCF   03,F
-0E6C:  MOVFF  01,FE9
-0E70:  MOVFF  03,FEA
-0E74:  MOVFF  FEC,03
-0E78:  MOVF   FED,F
-0E7A:  MOVFF  FEF,78
-0E7E:  MOVFF  03,79
+0E52:  MOVF   x73,W
+0E54:  MULLW  08
+0E56:  MOVF   FF3,W
+0E58:  ADDLW  02
+0E5A:  MOVWF  01
+0E5C:  MOVLW  04
+0E5E:  MOVWF  03
+0E60:  BTFSC  FD8.0
+0E62:  INCF   03,F
+0E64:  MOVFF  01,FE9
+0E68:  MOVFF  03,FEA
+0E6C:  MOVFF  FEC,03
+0E70:  MOVF   FED,F
+0E72:  MOVFF  FEF,78
+0E76:  MOVFF  03,79
 ....................    i=EP_BDxCNT_O(endpoint); 
-0E82:  MOVF   x73,W
-0E84:  MULLW  08
-0E86:  MOVF   FF3,W
-0E88:  ADDLW  01
-0E8A:  MOVWF  01
-0E8C:  MOVLW  04
-0E8E:  MOVWF  03
-0E90:  BTFSC  FD8.0
-0E92:  INCF   03,F
-0E94:  MOVFF  01,FE9
-0E98:  MOVFF  03,FEA
-0E9C:  MOVF   FEF,W
-0E9E:  CLRF   03
-0EA0:  MOVWF  x7B
-0EA2:  MOVFF  03,7C
+0E7A:  MOVF   x73,W
+0E7C:  MULLW  08
+0E7E:  MOVF   FF3,W
+0E80:  ADDLW  01
+0E82:  MOVWF  01
+0E84:  MOVLW  04
+0E86:  MOVWF  03
+0E88:  BTFSC  FD8.0
+0E8A:  INCF   03,F
+0E8C:  MOVFF  01,FE9
+0E90:  MOVFF  03,FEA
+0E94:  MOVF   FEF,W
+0E96:  CLRF   03
+0E98:  MOVWF  x7B
+0E9A:  MOVFF  03,7C
 ....................    st=EP_BDxST_O(endpoint); 
-0EA6:  MOVF   x73,W
-0EA8:  MULLW  08
-0EAA:  MOVFF  FF3,01
-0EAE:  MOVLW  04
-0EB0:  MOVFF  01,FE9
-0EB4:  MOVWF  FEA
-0EB6:  MOVFF  FEF,7A
+0E9E:  MOVF   x73,W
+0EA0:  MULLW  08
+0EA2:  MOVFF  FF3,01
+0EA6:  MOVLW  04
+0EA8:  MOVFF  01,FE9
+0EAC:  MOVWF  FEA
+0EAE:  MOVFF  FEF,7A
 ....................  
 ....................    //read BC8 and BC9 
 ....................    if (bit_test(st,0)) {bit_set(i,8);} 
-0EBA:  BTFSC  x7A.0
-0EBC:  BSF    x7C.0
+0EB2:  BTFSC  x7A.0
+0EB4:  BSF    x7C.0
 ....................    if (bit_test(st,1)) {bit_set(i,9);} 
-0EBE:  BTFSC  x7A.1
-0EC0:  BSF    x7C.1
+0EB6:  BTFSC  x7A.1
+0EB8:  BSF    x7C.1
 ....................  
 ....................    if (i<max) {max=i;} 
-0EC2:  MOVF   x7C,W
-0EC4:  SUBWF  x77,W
-0EC6:  BNC   0ED8
-0EC8:  BNZ   0ED0
-0ECA:  MOVF   x76,W
-0ECC:  SUBWF  x7B,W
-0ECE:  BC    0ED8
-0ED0:  MOVFF  7C,77
-0ED4:  MOVFF  7B,76
+0EBA:  MOVF   x7C,W
+0EBC:  SUBWF  x77,W
+0EBE:  BNC   0ED0
+0EC0:  BNZ   0EC8
+0EC2:  MOVF   x76,W
+0EC4:  SUBWF  x7B,W
+0EC6:  BC    0ED0
+0EC8:  MOVFF  7C,77
+0ECC:  MOVFF  7B,76
 ....................  
 ....................    i=0; 
-0ED8:  CLRF   x7C
-0EDA:  CLRF   x7B
+0ED0:  CLRF   x7C
+0ED2:  CLRF   x7B
 ....................  
 ....................    while (i<max) { 
-0EDC:  MOVF   x7C,W
-0EDE:  SUBWF  x77,W
-0EE0:  BNC   0F16
-0EE2:  BNZ   0EEA
-0EE4:  MOVF   x76,W
-0EE6:  SUBWF  x7B,W
-0EE8:  BC    0F16
+0ED4:  MOVF   x7C,W
+0ED6:  SUBWF  x77,W
+0ED8:  BNC   0F0E
+0EDA:  BNZ   0EE2
+0EDC:  MOVF   x76,W
+0EDE:  SUBWF  x7B,W
+0EE0:  BC    0F0E
 ....................        *ptr=*al; 
-0EEA:  MOVFF  78,FE9
-0EEE:  MOVFF  79,FEA
-0EF2:  MOVFF  FEF,7F
-0EF6:  MOVFF  75,FEA
-0EFA:  MOVFF  74,FE9
-0EFE:  MOVFF  7F,FEF
+0EE2:  MOVFF  78,FE9
+0EE6:  MOVFF  79,FEA
+0EEA:  MOVFF  FEF,7F
+0EEE:  MOVFF  75,FEA
+0EF2:  MOVFF  74,FE9
+0EF6:  MOVFF  7F,FEF
 ....................        ptr++; 
-0F02:  INCF   x74,F
-0F04:  BTFSC  FD8.2
-0F06:  INCF   x75,F
+0EFA:  INCF   x74,F
+0EFC:  BTFSC  FD8.2
+0EFE:  INCF   x75,F
 ....................        al++; 
-0F08:  INCF   x78,F
-0F0A:  BTFSC  FD8.2
-0F0C:  INCF   x79,F
+0F00:  INCF   x78,F
+0F02:  BTFSC  FD8.2
+0F04:  INCF   x79,F
 ....................        i++; 
-0F0E:  INCF   x7B,F
-0F10:  BTFSC  FD8.2
-0F12:  INCF   x7C,F
+0F06:  INCF   x7B,F
+0F08:  BTFSC  FD8.2
+0F0A:  INCF   x7C,F
 ....................    } 
-0F14:  BRA    0EDC
+0F0C:  BRA    0ED4
 ....................  
 ....................    return(max); 
-0F16:  MOVFF  76,01
-0F1A:  MOVFF  77,02
+0F0E:  MOVFF  76,01
+0F12:  MOVFF  77,02
 .................... } 
-0F1E:  GOTO   0F38 (RETURN)
+0F16:  GOTO   0F30 (RETURN)
 ....................  
 .................... /******************************************************************************* 
 .................... /* usb_get_packet(endpoint, *ptr, max) 
@@ -2191,31 +2191,31 @@ CCS PCH C Compiler, Version 4.065, 11862               22-jul-12 22:25
 .................... int16 usb_get_packet(int8 endpoint, int8 * ptr, int16 max) { 
 ....................  
 ....................    max=usb_get_packet_buffer(endpoint,ptr,max); 
-0F22:  MOVFF  6E,73
-0F26:  MOVFF  70,75
-0F2A:  MOVFF  6F,74
-0F2E:  MOVFF  72,77
-0F32:  MOVFF  71,76
-0F36:  BRA    0E5A
-0F38:  MOVFF  02,72
-0F3C:  MOVFF  01,71
-0F40:  CLRF   18
-0F42:  BTFSC  FF2.7
-0F44:  BSF    18.7
-0F46:  BCF    FF2.7
+0F1A:  MOVFF  6E,73
+0F1E:  MOVFF  70,75
+0F22:  MOVFF  6F,74
+0F26:  MOVFF  72,77
+0F2A:  MOVFF  71,76
+0F2E:  BRA    0E52
+0F30:  MOVFF  02,72
+0F34:  MOVFF  01,71
+0F38:  CLRF   18
+0F3A:  BTFSC  FF2.7
+0F3C:  BSF    18.7
+0F3E:  BCF    FF2.7
 ....................    usb_flush_out(endpoint, USB_DTS_TOGGLE); 
-0F48:  MOVFF  6E,83
-0F4C:  MOVLW  02
-0F4E:  MOVWF  x84
-0F50:  RCALL  081E
-0F52:  BTFSC  18.7
-0F54:  BSF    FF2.7
+0F40:  MOVFF  6E,83
+0F44:  MOVLW  02
+0F46:  MOVWF  x84
+0F48:  RCALL  081E
+0F4A:  BTFSC  18.7
+0F4C:  BSF    FF2.7
 ....................  
 ....................    return(max); 
-0F56:  MOVFF  71,01
-0F5A:  MOVFF  72,02
+0F4E:  MOVFF  71,01
+0F52:  MOVFF  72,02
 .................... } 
-0F5E:  GOTO   116E (RETURN)
+0F56:  GOTO   1166 (RETURN)
 ....................  
 .................... /******************************************************************************* 
 .................... /* usb_tbe(endpoint) 
@@ -5289,7 +5289,7 @@ CCS PCH C Compiler, Version 4.065, 11862               22-jul-12 22:25
 0BF4:  CLRWDT
 0BF6:  BRA    0BF0
 .................... } 
-0BF8:  GOTO   1138 (RETURN)
+0BF8:  GOTO   1130 (RETURN)
 ....................  
 .................... /**************************************************************************** 
 .................... /* usb_puts(endpoint, *ptr, len, timeout) 
@@ -6445,7 +6445,7 @@ CCS PCH C Compiler, Version 4.065, 11862               22-jul-12 22:25
 0C3E:  SUBLW  03
 0C40:  BNC   0CE0
 ....................    { 
-....................       if(steps[i] == 0){ 
+....................       if(steps[i] == 1){ 
 0C42:  CLRF   03
 0C44:  MOVF   x77,W
 0C46:  ADDWF  x71,W
@@ -6453,8 +6453,8 @@ CCS PCH C Compiler, Version 4.065, 11862               22-jul-12 22:25
 0C4A:  MOVF   x72,W
 0C4C:  ADDWFC 03,W
 0C4E:  MOVWF  FEA
-0C50:  MOVF   FEF,F
-0C52:  BNZ   0C9A
+0C50:  DECFSZ FEF,W
+0C52:  BRA    0C9A
 ....................          output_high(pins[i]); 
 0C54:  MOVF   x77,W
 0C56:  MULLW  04
@@ -6537,9 +6537,9 @@ CCS PCH C Compiler, Version 4.065, 11862               22-jul-12 22:25
 0CF0:  BRA    0D8C
 ....................          case 'R': 
 ....................          { 
-....................             if(atual_x == 12) 
+....................             if(atual_x == 3) 
 0CF2:  MOVF   45,W
-0CF4:  SUBLW  0C
+0CF4:  SUBLW  03
 0CF6:  BNZ   0D04
 ....................             { 
 ....................                move_to = nove; 
@@ -6556,40 +6556,40 @@ CCS PCH C Compiler, Version 4.065, 11862               22-jul-12 22:25
 0D06:  SUBLW  06
 0D08:  BNZ   0D16
 ....................             { 
-....................                move_to = doze; 
+....................                move_to = tres; 
 0D0A:  CLRF   x70
-0D0C:  MOVLW  25
+0D0C:  MOVLW  2D
 0D0E:  MOVWF  x6F
-....................                atual_x = 12; 
-0D10:  MOVLW  0C
+....................                atual_x = 3; 
+0D10:  MOVLW  03
 0D12:  MOVWF  45
 ....................             } 
-....................             else if(atual_x == 3) 
+....................             else if(atual_x == 9) 
 0D14:  BRA    0D38
 0D16:  MOVF   45,W
-0D18:  SUBLW  03
+0D18:  SUBLW  09
 0D1A:  BNZ   0D28
 ....................             { 
-....................                move_to = seis; 
+....................                move_to = doze; 
 0D1C:  CLRF   x70
-0D1E:  MOVLW  29
+0D1E:  MOVLW  25
 0D20:  MOVWF  x6F
-....................                atual_x = 6; 
-0D22:  MOVLW  06
+....................                atual_x = 12; 
+0D22:  MOVLW  0C
 0D24:  MOVWF  45
 ....................             } 
-....................             else if(atual_x == 9) 
+....................             else if(atual_x == 12) 
 0D26:  BRA    0D38
 0D28:  MOVF   45,W
-0D2A:  SUBLW  09
+0D2A:  SUBLW  0C
 0D2C:  BNZ   0D38
 ....................             {   
-....................                move_to = tres; 
+....................                move_to = seis; 
 0D2E:  CLRF   x70
-0D30:  MOVLW  2D
+0D30:  MOVLW  29
 0D32:  MOVWF  x6F
-....................                atual_x = 3; 
-0D34:  MOVLW  03
+....................                atual_x = 6; 
+0D34:  MOVLW  06
 0D36:  MOVWF  45
 ....................             } 
 ....................             break; 
@@ -6598,9 +6598,9 @@ CCS PCH C Compiler, Version 4.065, 11862               22-jul-12 22:25
 ....................           
 ....................          case 'L': 
 ....................          { 
-....................             if(atual_x == 12) 
+....................             if(atual_x == 3) 
 0D3A:  MOVF   45,W
-0D3C:  SUBLW  0C
+0D3C:  SUBLW  03
 0D3E:  BNZ   0D4C
 ....................             { 
 ....................                move_to = seis; 
@@ -6617,40 +6617,40 @@ CCS PCH C Compiler, Version 4.065, 11862               22-jul-12 22:25
 0D4E:  SUBLW  06
 0D50:  BNZ   0D5E
 ....................             { 
-....................                move_to = tres; 
+....................                move_to = doze; 
 0D52:  CLRF   x70
-0D54:  MOVLW  2D
+0D54:  MOVLW  25
 0D56:  MOVWF  x6F
-....................                atual_x = 3; 
-0D58:  MOVLW  03
+....................                atual_x = 12; 
+0D58:  MOVLW  0C
 0D5A:  MOVWF  45
 ....................             } 
-....................             else if(atual_x == 3) 
+....................             else if(atual_x == 9) 
 0D5C:  BRA    0D80
 0D5E:  MOVF   45,W
-0D60:  SUBLW  03
+0D60:  SUBLW  09
 0D62:  BNZ   0D70
 ....................             { 
-....................                move_to = nove; 
+....................                move_to = tres; 
 0D64:  CLRF   x70
-0D66:  MOVLW  31
+0D66:  MOVLW  2D
 0D68:  MOVWF  x6F
-....................                atual_x = 9; 
-0D6A:  MOVLW  09
+....................                atual_x = 3; 
+0D6A:  MOVLW  03
 0D6C:  MOVWF  45
 ....................             } 
-....................             else if(atual_x == 9) 
+....................             else if(atual_x == 12) 
 0D6E:  BRA    0D80
 0D70:  MOVF   45,W
-0D72:  SUBLW  09
+0D72:  SUBLW  0C
 0D74:  BNZ   0D80
 ....................             {   
-....................                move_to = doze; 
+....................                move_to = nove; 
 0D76:  CLRF   x70
-0D78:  MOVLW  25
+0D78:  MOVLW  31
 0D7A:  MOVWF  x6F
-....................                atual_x = 12; 
-0D7C:  MOVLW  0C
+....................                atual_x = 9; 
+0D7C:  MOVLW  09
 0D7E:  MOVWF  45
 ....................             } 
 ....................             break; 
@@ -6662,9 +6662,9 @@ CCS PCH C Compiler, Version 4.065, 11862               22-jul-12 22:25
 0D82:  CLRF   x70
 0D84:  MOVLW  31
 0D86:  MOVWF  x6F
-....................             atual_x = 9; 
+....................             atual_y = 9; 
 0D88:  MOVLW  09
-0D8A:  MOVWF  45
+0D8A:  MOVWF  56
 ....................          } 
 ....................      }                 
 ....................      move(move_to, PINS_X); 
@@ -6685,415 +6685,408 @@ CCS PCH C Compiler, Version 4.065, 11862               22-jul-12 22:25
 0D9C:  XORLW  46
 0D9E:  BZ    0DAA
 0DA0:  XORLW  04
-0DA2:  BZ    0DF6
+0DA2:  BZ    0DF2
 0DA4:  XORLW  11
-0DA6:  BZ    0E42
-0DA8:  BRA    0E4C
+0DA6:  BZ    0E3A
+0DA8:  BRA    0E44
 ....................          case 'F': 
 ....................          { 
-....................             if(atual_y == 0 || atual_y == 9){ 
-0DAA:  MOVF   56,F
-0DAC:  BZ    0DB4
-0DAE:  MOVF   56,W
-0DB0:  SUBLW  09
-0DB2:  BNZ   0DC0
-....................                move_to = tres; 
-0DB4:  CLRF   x70
-0DB6:  MOVLW  2D
-0DB8:  MOVWF  x6F
-....................                atual_y = 3; 
-0DBA:  MOVLW  03
-0DBC:  MOVWF  56
-....................             }else if(atual_y == 3){ 
-0DBE:  BRA    0DF4
-0DC0:  MOVF   56,W
-0DC2:  SUBLW  03
-0DC4:  BNZ   0DD2
-....................                move_to = seis; 
-0DC6:  CLRF   x70
-0DC8:  MOVLW  29
-0DCA:  MOVWF  x6F
-....................                atual_y = 6; 
-0DCC:  MOVLW  06
-0DCE:  MOVWF  56
-....................             }else if(atual_y == 6){ 
-0DD0:  BRA    0DF4
-0DD2:  MOVF   56,W
-0DD4:  SUBLW  06
-0DD6:  BNZ   0DE4
-....................                move_to = doze; 
-0DD8:  CLRF   x70
-0DDA:  MOVLW  25
-0DDC:  MOVWF  x6F
-....................                atual_y = 12; 
-0DDE:  MOVLW  0C
-0DE0:  MOVWF  56
-....................             }else if(atual_y == 12){ 
-0DE2:  BRA    0DF4
-0DE4:  MOVF   56,W
-0DE6:  SUBLW  0C
-0DE8:  BNZ   0DF4
+....................             if(atual_y == 3){ 
+0DAA:  MOVF   56,W
+0DAC:  SUBLW  03
+0DAE:  BNZ   0DBC
 ....................                move_to = nove; 
-0DEA:  CLRF   x70
-0DEC:  MOVLW  31
-0DEE:  MOVWF  x6F
+0DB0:  CLRF   x70
+0DB2:  MOVLW  31
+0DB4:  MOVWF  x6F
 ....................                atual_y = 9; 
-0DF0:  MOVLW  09
-0DF2:  MOVWF  56
+0DB6:  MOVLW  09
+0DB8:  MOVWF  56
+....................             }else if(atual_y == 6){ 
+0DBA:  BRA    0DF0
+0DBC:  MOVF   56,W
+0DBE:  SUBLW  06
+0DC0:  BNZ   0DCE
+....................                move_to = tres; 
+0DC2:  CLRF   x70
+0DC4:  MOVLW  2D
+0DC6:  MOVWF  x6F
+....................                atual_y = 3; 
+0DC8:  MOVLW  03
+0DCA:  MOVWF  56
+....................             }else if(atual_y == 9){ 
+0DCC:  BRA    0DF0
+0DCE:  MOVF   56,W
+0DD0:  SUBLW  09
+0DD2:  BNZ   0DE0
+....................                move_to = doze; 
+0DD4:  CLRF   x70
+0DD6:  MOVLW  25
+0DD8:  MOVWF  x6F
+....................                atual_y = 12; 
+0DDA:  MOVLW  0C
+0DDC:  MOVWF  56
+....................             }else if(atual_y == 12){ 
+0DDE:  BRA    0DF0
+0DE0:  MOVF   56,W
+0DE2:  SUBLW  0C
+0DE4:  BNZ   0DF0
+....................                move_to = seis; 
+0DE6:  CLRF   x70
+0DE8:  MOVLW  29
+0DEA:  MOVWF  x6F
+....................                atual_y = 6; 
+0DEC:  MOVLW  06
+0DEE:  MOVWF  56
 ....................             } 
 ....................             break; 
-0DF4:  BRA    0E4C
+0DF0:  BRA    0E44
 ....................          } 
 ....................           
 ....................          case 'B': 
 ....................          { 
-....................             if(atual_y == 0 || atual_y == 9){ 
-0DF6:  MOVF   56,F
-0DF8:  BZ    0E00
-0DFA:  MOVF   56,W
-0DFC:  SUBLW  09
-0DFE:  BNZ   0E0C
-....................                move_to = doze; 
-0E00:  CLRF   x70
-0E02:  MOVLW  25
-0E04:  MOVWF  x6F
-....................                atual_y = 12; 
-0E06:  MOVLW  0C
-0E08:  MOVWF  56
-....................             }else if(atual_y == 3){ 
-0E0A:  BRA    0E40
-0E0C:  MOVF   56,W
-0E0E:  SUBLW  03
-0E10:  BNZ   0E1E
-....................                move_to = nove; 
-0E12:  CLRF   x70
-0E14:  MOVLW  31
-0E16:  MOVWF  x6F
-....................                atual_y = 9; 
-0E18:  MOVLW  09
-0E1A:  MOVWF  56
-....................             }else if(atual_y == 6){ 
-0E1C:  BRA    0E40
-0E1E:  MOVF   56,W
-0E20:  SUBLW  06
-0E22:  BNZ   0E30
-....................                move_to = tres; 
-0E24:  CLRF   x70
-0E26:  MOVLW  2D
-0E28:  MOVWF  x6F
-....................                atual_y = 3; 
-0E2A:  MOVLW  03
-0E2C:  MOVWF  56
-....................             }else if(atual_y == 12){ 
-0E2E:  BRA    0E40
-0E30:  MOVF   56,W
-0E32:  SUBLW  0C
-0E34:  BNZ   0E40
+....................             if(atual_y == 3){ 
+0DF2:  MOVF   56,W
+0DF4:  SUBLW  03
+0DF6:  BNZ   0E04
 ....................                move_to = seis; 
-0E36:  CLRF   x70
-0E38:  MOVLW  29
-0E3A:  MOVWF  x6F
+0DF8:  CLRF   x70
+0DFA:  MOVLW  29
+0DFC:  MOVWF  x6F
 ....................                atual_y = 6; 
-0E3C:  MOVLW  06
-0E3E:  MOVWF  56
+0DFE:  MOVLW  06
+0E00:  MOVWF  56
+....................             }else if(atual_y == 6){ 
+0E02:  BRA    0E38
+0E04:  MOVF   56,W
+0E06:  SUBLW  06
+0E08:  BNZ   0E16
+....................                move_to = doze; 
+0E0A:  CLRF   x70
+0E0C:  MOVLW  25
+0E0E:  MOVWF  x6F
+....................                atual_y = 12; 
+0E10:  MOVLW  0C
+0E12:  MOVWF  56
+....................             }else if(atual_y == 9){ 
+0E14:  BRA    0E38
+0E16:  MOVF   56,W
+0E18:  SUBLW  09
+0E1A:  BNZ   0E28
+....................                move_to = tres; 
+0E1C:  CLRF   x70
+0E1E:  MOVLW  2D
+0E20:  MOVWF  x6F
+....................                atual_y = 3; 
+0E22:  MOVLW  03
+0E24:  MOVWF  56
+....................             }else if(atual_y == 12){ 
+0E26:  BRA    0E38
+0E28:  MOVF   56,W
+0E2A:  SUBLW  0C
+0E2C:  BNZ   0E38
+....................                move_to = nove; 
+0E2E:  CLRF   x70
+0E30:  MOVLW  31
+0E32:  MOVWF  x6F
+....................                atual_y = 9; 
+0E34:  MOVLW  09
+0E36:  MOVWF  56
 ....................             } 
 ....................             break; 
-0E40:  BRA    0E4C
+0E38:  BRA    0E44
 ....................          } 
 ....................          case 'S': 
 ....................          { 
 ....................             move_to = nove; 
-0E42:  CLRF   x70
-0E44:  MOVLW  31
-0E46:  MOVWF  x6F
-....................             atual_x = 9; 
-0E48:  MOVLW  09
-0E4A:  MOVWF  45
+0E3A:  CLRF   x70
+0E3C:  MOVLW  31
+0E3E:  MOVWF  x6F
+....................             atual_y = 9; 
+0E40:  MOVLW  09
+0E42:  MOVWF  56
 ....................          } 
 ....................      }                 
 ....................      move(move_to, PINS_Y); 
-0E4C:  MOVFF  6F,71
-0E50:  CLRF   x76
-0E52:  MOVLW  46
-0E54:  MOVWF  x75
-0E56:  RCALL  0C3A
+0E44:  MOVFF  6F,71
+0E48:  CLRF   x76
+0E4A:  MOVLW  46
+0E4C:  MOVWF  x75
+0E4E:  RCALL  0C3A
 .................... } 
-0E58:  RETLW  00
+0E50:  RETLW  00
 ....................  
 .................... void main(void) { 
 *
-1040:  CLRF   FF8
-1042:  BCF    FD0.7
-1044:  BSF    0D.7
-1046:  CLRF   FEA
-1048:  CLRF   FE9
-104A:  MOVF   FC1,W
-104C:  ANDLW  C0
-104E:  IORLW  0F
-1050:  MOVWF  FC1
-1052:  MOVLW  07
-1054:  MOVWF  FB4
-1056:  CLRF   1F
-1058:  CLRF   23
-105A:  MOVLW  01
-105C:  MOVWF  25
-105E:  MOVWF  26
-1060:  CLRF   27
-1062:  CLRF   28
-1064:  CLRF   29
-1066:  MOVWF  2A
-1068:  MOVWF  2B
-106A:  CLRF   2C
-106C:  CLRF   2D
-106E:  CLRF   2E
-1070:  MOVWF  2F
-1072:  MOVWF  30
-1074:  MOVWF  31
-1076:  CLRF   32
-1078:  CLRF   33
-107A:  MOVWF  34
-107C:  MOVLW  1C
-107E:  MOVWF  35
-1080:  MOVLW  7C
-1082:  MOVWF  36
-1084:  CLRF   37
-1086:  CLRF   38
-1088:  MOVLW  1D
-108A:  MOVWF  39
-108C:  MOVLW  7C
-108E:  MOVWF  3A
-1090:  CLRF   3B
-1092:  CLRF   3C
-1094:  MOVLW  1E
-1096:  MOVWF  3D
-1098:  MOVLW  7C
-109A:  MOVWF  3E
-109C:  CLRF   3F
-109E:  CLRF   40
-10A0:  MOVLW  1F
-10A2:  MOVWF  41
-10A4:  MOVLW  7C
-10A6:  MOVWF  42
-10A8:  CLRF   43
-10AA:  CLRF   44
-10AC:  MOVLW  09
-10AE:  MOVWF  45
-10B0:  MOVLW  08
-10B2:  MOVWF  46
-10B4:  MOVLW  7C
-10B6:  MOVWF  47
-10B8:  CLRF   48
-10BA:  CLRF   49
-10BC:  MOVLW  09
-10BE:  MOVWF  4A
-10C0:  MOVLW  7C
-10C2:  MOVWF  4B
-10C4:  CLRF   4C
-10C6:  CLRF   4D
-10C8:  MOVLW  0A
-10CA:  MOVWF  4E
-10CC:  MOVLW  7C
-10CE:  MOVWF  4F
-10D0:  CLRF   50
-10D2:  CLRF   51
-10D4:  MOVLW  0B
-10D6:  MOVWF  52
-10D8:  MOVLW  7C
-10DA:  MOVWF  53
-10DC:  CLRF   54
-10DE:  CLRF   55
-10E0:  MOVLW  09
-10E2:  MOVWF  56
-10E4:  MOVLW  0C
-10E6:  MOVWF  57
-10E8:  MOVLW  7C
-10EA:  MOVWF  58
-10EC:  CLRF   59
-10EE:  CLRF   5A
-10F0:  MOVLW  0D
-10F2:  MOVWF  5B
-10F4:  MOVLW  7C
-10F6:  MOVWF  5C
-10F8:  CLRF   5D
-10FA:  CLRF   5E
-10FC:  MOVLW  0E
-10FE:  MOVWF  5F
-1100:  MOVLW  7C
-1102:  MOVWF  x60
-1104:  CLRF   x61
-1106:  CLRF   x62
-1108:  MOVLW  0F
-110A:  MOVWF  x63
-110C:  MOVLW  7C
-110E:  MOVWF  x64
-1110:  CLRF   x65
-1112:  CLRF   x66
-1114:  MOVLW  09
-1116:  MOVWF  x67
+1038:  CLRF   FF8
+103A:  BCF    FD0.7
+103C:  BSF    0D.7
+103E:  CLRF   FEA
+1040:  CLRF   FE9
+1042:  MOVF   FC1,W
+1044:  ANDLW  C0
+1046:  IORLW  0F
+1048:  MOVWF  FC1
+104A:  MOVLW  07
+104C:  MOVWF  FB4
+104E:  CLRF   1F
+1050:  CLRF   23
+1052:  MOVLW  01
+1054:  MOVWF  25
+1056:  MOVWF  26
+1058:  CLRF   27
+105A:  CLRF   28
+105C:  CLRF   29
+105E:  MOVWF  2A
+1060:  MOVWF  2B
+1062:  CLRF   2C
+1064:  CLRF   2D
+1066:  CLRF   2E
+1068:  MOVWF  2F
+106A:  MOVWF  30
+106C:  MOVWF  31
+106E:  CLRF   32
+1070:  CLRF   33
+1072:  MOVWF  34
+1074:  MOVLW  1C
+1076:  MOVWF  35
+1078:  MOVLW  7C
+107A:  MOVWF  36
+107C:  CLRF   37
+107E:  CLRF   38
+1080:  MOVLW  1D
+1082:  MOVWF  39
+1084:  MOVLW  7C
+1086:  MOVWF  3A
+1088:  CLRF   3B
+108A:  CLRF   3C
+108C:  MOVLW  1E
+108E:  MOVWF  3D
+1090:  MOVLW  7C
+1092:  MOVWF  3E
+1094:  CLRF   3F
+1096:  CLRF   40
+1098:  MOVLW  1F
+109A:  MOVWF  41
+109C:  MOVLW  7C
+109E:  MOVWF  42
+10A0:  CLRF   43
+10A2:  CLRF   44
+10A4:  MOVLW  09
+10A6:  MOVWF  45
+10A8:  MOVLW  08
+10AA:  MOVWF  46
+10AC:  MOVLW  7C
+10AE:  MOVWF  47
+10B0:  CLRF   48
+10B2:  CLRF   49
+10B4:  MOVLW  09
+10B6:  MOVWF  4A
+10B8:  MOVLW  7C
+10BA:  MOVWF  4B
+10BC:  CLRF   4C
+10BE:  CLRF   4D
+10C0:  MOVLW  0A
+10C2:  MOVWF  4E
+10C4:  MOVLW  7C
+10C6:  MOVWF  4F
+10C8:  CLRF   50
+10CA:  CLRF   51
+10CC:  MOVLW  0B
+10CE:  MOVWF  52
+10D0:  MOVLW  7C
+10D2:  MOVWF  53
+10D4:  CLRF   54
+10D6:  CLRF   55
+10D8:  MOVLW  09
+10DA:  MOVWF  56
+10DC:  MOVLW  0C
+10DE:  MOVWF  57
+10E0:  MOVLW  7C
+10E2:  MOVWF  58
+10E4:  CLRF   59
+10E6:  CLRF   5A
+10E8:  MOVLW  0D
+10EA:  MOVWF  5B
+10EC:  MOVLW  7C
+10EE:  MOVWF  5C
+10F0:  CLRF   5D
+10F2:  CLRF   5E
+10F4:  MOVLW  0E
+10F6:  MOVWF  5F
+10F8:  MOVLW  7C
+10FA:  MOVWF  x60
+10FC:  CLRF   x61
+10FE:  CLRF   x62
+1100:  MOVLW  0F
+1102:  MOVWF  x63
+1104:  MOVLW  7C
+1106:  MOVWF  x64
+1108:  CLRF   x65
+110A:  CLRF   x66
+110C:  MOVLW  09
+110E:  MOVWF  x67
 ....................       
 ....................    int8 recibe[5];                  //declaramos variables 
 ....................    int8 send2[1]; 
 ....................  
 ....................    LED_OFF(LED_OK);                   //encendemos led rojo 
-1118:  BCF    F95.0
-111A:  BCF    F8C.0
+1110:  BCF    F95.0
+1112:  BCF    F8C.0
 ....................    LED_ON(LED_FAIL); 
-111C:  BCF    F95.1
-111E:  BSF    F8C.1
-....................           
+1114:  BCF    F95.1
+1116:  BSF    F8C.1
+....................              
 ....................    usb_init();                      //inicializamos el USB   
-1120:  BRA    0BE2
+1118:  BRA    0BE2
 ....................     
 ....................    setup_adc_ports(AN0);         //Configura canais analógico 
-1122:  MOVF   FC1,W
-1124:  ANDLW  C0
-1126:  IORLW  0E
-1128:  MOVWF  FC1
+111A:  MOVF   FC1,W
+111C:  ANDLW  C0
+111E:  IORLW  0E
+1120:  MOVWF  FC1
 ....................    setup_adc(ADC_CLOCK_INTERNAL);    //De acordo com relógio interno. 
-112A:  BSF    FC0.0
-112C:  BSF    FC0.1
-112E:  BSF    FC0.2
-1130:  BSF    FC0.7
-1132:  BSF    FC2.0
+1122:  BSF    FC0.0
+1124:  BSF    FC0.1
+1126:  BSF    FC0.2
+1128:  BSF    FC0.7
+112A:  BSF    FC2.0
 ....................     
 ....................    /*SETUP_TIMER_1 (T1_INTERNAL|T1_DIV_BY_2);       //Configurar timer1 para clock iterno/8 
 ....................    enable_interrupts (INT_TIMER1);                //Habilitar Interrupções 
 ....................    enable_interrupts (global);*/ 
 ....................  
 ....................    usb_task();                      //habilita periferico usb e interrupciones 
-1134:  RCALL  0BC0
+112C:  RCALL  0BC0
 ....................    usb_wait_for_enumeration();      //esperamos hasta que el PicUSB sea configurado por el host 
-1136:  BRA    0BF0
+112E:  BRA    0BF0
 ....................     
-....................    /*SETUP_TIMER_1 (T1_INTERNAL|T1_DIV_BY_2);       //Configurar timer1 para clock iterno/8 
-....................    enable_interrupts (INT_TIMER1);                //Habilitar Interrupções 
-....................    enable_interrupts (global);*/ 
+....................    enable_interrupts (global); 
+1130:  MOVLW  C0
+1132:  IORWF  FF2,F
 ....................  
-....................    LED_OFF(LED_FAIL); 
-1138:  BCF    F95.1
-113A:  BCF    F8C.1
-....................    LED_ON(LED_OK);                    //encendemos led verde 
-113C:  BCF    F95.0
-113E:  BSF    F8C.0
+....................    LED_OFF(LED_FAIL);                 //desligo o LED vermelho 
+1134:  BCF    F95.1
+1136:  BCF    F8C.1
+....................    LED_ON(LED_OK);                    //acendo o LED verde 
+1138:  BCF    F95.0
+113A:  BSF    F8C.0
 ....................     
 ....................    move_x('S'); 
-1140:  MOVLW  53
-1142:  MOVWF  x6E
-1144:  RCALL  0CE2
+113C:  MOVLW  53
+113E:  MOVWF  x6E
+1140:  RCALL  0CE2
 ....................    move_y('S'); 
-1146:  MOVLW  53
-1148:  MOVWF  x6E
-114A:  RCALL  0D9A
+1142:  MOVLW  53
+1144:  MOVWF  x6E
+1146:  RCALL  0D9A
 ....................           
 ....................    while (true) 
 ....................    { 
 ....................       if(usb_enumerated())          //si el PicUSB está configurado 
-114C:  MOVF   1A,F
-114E:  BZ    11D6
-....................       {          
-....................          output_high(PIN_E0); 
-1150:  BCF    F96.0
-1152:  BSF    F8D.0
+1148:  MOVF   1A,F
+114A:  BZ    11CE
+....................       {   
 ....................          if (usb_kbhit(1))          //si el endpoint de salida contiene datos del host 
-1154:  BTFSS  1D.1
-1156:  BRA    11D6
+114C:  BTFSS  1D.1
+114E:  BRA    11CE
 ....................          {             
 ....................             LED_ON(LED_DATA); 
-1158:  BCF    F95.2
-115A:  BSF    F8C.2
+1150:  BCF    F95.2
+1152:  BSF    F8C.2
 ....................             usb_get_packet(1, recibe, 5); //cojemos el paquete de tamaño 3bytes del EP1 y almacenamos en recibe             
-115C:  MOVLW  01
-115E:  MOVWF  x6E
-1160:  CLRF   x70
-1162:  MOVLW  68
-1164:  MOVWF  x6F
-1166:  CLRF   x72
-1168:  MOVLW  05
-116A:  MOVWF  x71
-116C:  BRA    0F22
+1154:  MOVLW  01
+1156:  MOVWF  x6E
+1158:  CLRF   x70
+115A:  MOVLW  68
+115C:  MOVWF  x6F
+115E:  CLRF   x72
+1160:  MOVLW  05
+1162:  MOVWF  x71
+1164:  BRA    0F1A
 ....................              
 ....................             if(modo == 1) 
-116E:  DECFSZ x68,W
-1170:  BRA    11B4
+1166:  DECFSZ x68,W
+1168:  BRA    11AC
 ....................             {                
 ....................                   if(dir_x == 1 && value_x == 1){ 
-1172:  DECFSZ x69,W
-1174:  BRA    1180
-1176:  DECFSZ x6A,W
-1178:  BRA    1180
+116A:  DECFSZ x69,W
+116C:  BRA    1178
+116E:  DECFSZ x6A,W
+1170:  BRA    1178
 ....................                      move_x('R'); 
-117A:  MOVLW  52
-117C:  MOVWF  x6E
-117E:  RCALL  0CE2
+1172:  MOVLW  52
+1174:  MOVWF  x6E
+1176:  RCALL  0CE2
 ....................                   } 
 ....................                   if(dir_x == 2 && value_x == 1){ 
-1180:  MOVF   x69,W
-1182:  SUBLW  02
-1184:  BNZ   1190
-1186:  DECFSZ x6A,W
-1188:  BRA    1190
+1178:  MOVF   x69,W
+117A:  SUBLW  02
+117C:  BNZ   1188
+117E:  DECFSZ x6A,W
+1180:  BRA    1188
 ....................                      move_x('L'); 
-118A:  MOVLW  4C
-118C:  MOVWF  x6E
-118E:  RCALL  0CE2
+1182:  MOVLW  4C
+1184:  MOVWF  x6E
+1186:  RCALL  0CE2
 ....................                   }                   
 ....................                   if(dir_y == 1 && value_y == 1){ 
-1190:  DECFSZ x6B,W
-1192:  BRA    119E
-1194:  DECFSZ x6C,W
-1196:  BRA    119E
+1188:  DECFSZ x6B,W
+118A:  BRA    1196
+118C:  DECFSZ x6C,W
+118E:  BRA    1196
 ....................                      move_y('F'); 
-1198:  MOVLW  46
-119A:  MOVWF  x6E
-119C:  RCALL  0D9A
+1190:  MOVLW  46
+1192:  MOVWF  x6E
+1194:  RCALL  0D9A
 ....................                   } 
 ....................                   if(dir_y == 2 && value_y == 1){ 
-119E:  MOVF   x6B,W
-11A0:  SUBLW  02
-11A2:  BNZ   11AE
-11A4:  DECFSZ x6C,W
-11A6:  BRA    11AE
+1196:  MOVF   x6B,W
+1198:  SUBLW  02
+119A:  BNZ   11A6
+119C:  DECFSZ x6C,W
+119E:  BRA    11A6
 ....................                      move_y('B'); 
-11A8:  MOVLW  42
-11AA:  MOVWF  x6E
-11AC:  RCALL  0D9A
+11A0:  MOVLW  42
+11A2:  MOVWF  x6E
+11A4:  RCALL  0D9A
 ....................                   } 
 ....................                    
 ....................                   delay_ms(20);                
-11AE:  MOVLW  14
-11B0:  MOVWF  x6E
-11B2:  BRA    0F62
+11A6:  MOVLW  14
+11A8:  MOVWF  x6E
+11AA:  BRA    0F5A
 ....................             } 
 ....................              
 ....................             if (modo == 4) 
-11B4:  MOVF   x68,W
-11B6:  SUBLW  04
-11B8:  BNZ   11D2
+11AC:  MOVF   x68,W
+11AE:  SUBLW  04
+11B0:  BNZ   11CA
 ....................             { 
-....................                status=1; 
-11BA:  MOVLW  01
-11BC:  MOVWF  x6D
-....................                usb_put_packet(1, send2, 1, USB_DTS_TOGGLE); //enviamos el paquete de tamaño 1byte del EP1 al PC 
-11BE:  MOVWF  x6E
-11C0:  CLRF   x70
-11C2:  MOVLW  6D
-11C4:  MOVWF  x6F
-11C6:  CLRF   x72
-11C8:  MOVLW  01
-11CA:  MOVWF  x71
-11CC:  MOVLW  02
-11CE:  MOVWF  x73
-11D0:  BRA    0F8C
+....................                status = 1; 
+11B2:  MOVLW  01
+11B4:  MOVWF  x6D
+....................                usb_put_packet(1, send2, 1, USB_DTS_TOGGLE); //enviada a informação para o PC com o status 
+11B6:  MOVWF  x6E
+11B8:  CLRF   x70
+11BA:  MOVLW  6D
+11BC:  MOVWF  x6F
+11BE:  CLRF   x72
+11C0:  MOVLW  01
+11C2:  MOVWF  x71
+11C4:  MOVLW  02
+11C6:  MOVWF  x73
+11C8:  BRA    0F84
 ....................             }     
 ....................             LED_OFF(LED_DATA); 
-11D2:  BCF    F95.2
-11D4:  BCF    F8C.2
+11CA:  BCF    F95.2
+11CC:  BCF    F8C.2
 ....................          } 
 ....................       } 
 ....................    } 
-11D6:  BRA    114C
+11CE:  BRA    1148
 .................... } 
-11D8:  SLEEP 
+11D0:  SLEEP 
 
 Configuration Fuses:
    Word  1: 0E22   NOIESO NOFCMEN HSPLL PLL3 CPUDIV1 USBDIV
